@@ -41,9 +41,9 @@ class Person:
             return self.hp
 
     def heal(self, dmg):
-        self.hp -= dmg
+        self.hp += dmg
         if self.hp > self.maxhp:
-            self.hp = maxhp
+            self.hp = self.maxhp
 
     def get_hp(self):
         return self.hp

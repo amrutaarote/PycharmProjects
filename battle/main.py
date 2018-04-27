@@ -49,7 +49,6 @@ while running:
         # spell = player.get_spell_name(magic_choice)
         # cost = player.get_spell_mp_cost(magic_choice)
 
-
         spell = player.magic[magic_choice]
         magic_dmg = spell.generate_damage()
 
@@ -60,8 +59,13 @@ while running:
             continue
 
         player.reduce_mp(spell.cost)
-        enemy.take_damage(magic_dmg)
-        print(bcolors.OKGREEN + "\n" + spell.name + " deals ", str(magic_dmg), " points of damage " + bcolors.ENDC)
+
+        if spell.type == "White Magic":
+            player.heal(magic_dmg)
+            print(bcolors.OKBLUE + "\n" + spell.name + " heals for", str(magic_dmg), "HP." + bcolors.ENDC)
+        elif spell.type == "black":
+            enemy.take_damage(magic_dmg)
+            print(bcolors.OKGREEN + "\n" + spell.name + " deals ", str(magic_dmg), " points of damage " + bcolors.ENDC)
 
     enemy_choice = 1
 
